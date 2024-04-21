@@ -1,0 +1,8 @@
+.error-messages {
+    color: red;
+    list-style: none;
+    padding: 10px;
+}
+.error-messages li {
+    margin-bottom: 5px;
+}

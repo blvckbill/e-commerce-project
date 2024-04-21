@@ -1,0 +1,40 @@
+{% extends 'main.html' %}
+
+{% load static %}
+{% block content %}
+    <h1>Login</h1>
+      {% if form.errors %}
+        <ul class="error-messages">
+          {% for field, errors in form.errors.items %}
+            <li>
+              **{{ field }}:**
+              {% for error in errors %}
+                {{ error }}
+              {% endfor %}
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+    <form action="{% url 'loginPage' %}" method="post">
+      {% csrf_token %}
+  
+      {% for field in form %}
+        <div class="form-group">
+          {{ field.label_tag }} {{ field }}
+          {% if field.errors %}
+            <ul class="error-list">
+              {% for error in field.errors %}
+                <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+      {% endfor %}
+      <button type="submit">Login</button>
+    </form>
+    <p>
+        <a href="{% url 'forgotPassword' %}">Forgot Password?</a>
+        <a href="{% url 'signup' %}">Sign Up</a>
+    </p>
+{% endblock %}

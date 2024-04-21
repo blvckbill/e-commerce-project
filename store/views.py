@@ -4,6 +4,7 @@ from .models import *
 import json
 import datetime
 from .utils import cartData, cookieCart, guestOrder
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -15,6 +16,7 @@ def store(request):
     context = {'products':products, 'cartItems':cartItems}
     return render(request,'store.html',context)
 
+@login_required
 def cart(request):
     data = cartData(request)
     cartItems = data['cartItems']
